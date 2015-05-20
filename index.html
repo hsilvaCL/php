@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h3 align="center">CALCULADORA</h3>
+  <form action="calculadora.php" method="POST">
+    <table border="1" align="center" width="400px" cellpadding="4">
+    <tr>
+		<td><b>Parámetro 1:</b></td>
+		<td>
+			<input type="text" name="par1" id="par1" size="10">
+		</td>
+    </tr>
+    <tr>
+		<td><b>Parámetro 2:</b></td>
+		<td>
+			<input type="text" name="par2" id="par2" size="10">
+		</td>
+    </tr>
+    <tr>
+		<td><b>Operador:</b></td>
+		<td>
+			<input type="text" name="op" id="op" size="5">
+		</td>
+    </tr>
+    <tr>
+		<td colspan="2" align="center">
+		  <input type="button" name="enviar" value="Resultado" onclick="CalcularTotal();">
+		</td>
+    </tr>
+    <tr>
+		<td colspan="2" align="center">
+		  <input type="text" name="res" id="res" size="15">
+		</td>
+    </tr>
+    </table>
+ 
+  </form>
+  
+  	<script type="text/javascript">
+		function CalcularTotal()
+		{
+			var par1 = $("#par1").val();
+			var par2 = $("#par2").val();
+			var op = $("#op").val();
+ 
+			/*Solicitamos el resultado con AJAX según el método POST*/
+			/*como parámetro (por POST) se envía el par1, par2 y op.*/
+			$.ajax({
+				url:'calculadora.php',
+				type:'POST',
+				data: "par1="+ par1+"&par2="+par2+"&op="+op,
+				success:function(html){
+					$("#res").html(html);
+				}
+			});
+		}
+  	</script>
+</body>
+</html>
